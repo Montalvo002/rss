@@ -1,6 +1,6 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -10,6 +10,30 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
+
+      <!-- Logueado  -->
+      <div *ngIf="globalVars.log" style="position:absolute;bottom:0px;width:100%;">
+        <!-- <button menuClose ion-item>
+            <ion-icon name="md-contact" item-left></ion-icon>
+            Mis datos
+        </button> -->
+        <button menuClose ion-item (click)="cerrarSesion()">
+            <ion-icon name="md-log-out" item-left></ion-icon>
+            Cerrar sesión
+        </button>
+      </div>
+      <!-- No logueado -->
+      <div *ngIf="!globalVars.log" style="position:absolute;bottom:0px;width:100%;">
+        <button menuClose ion-item (click)="entrada(2)">
+            <ion-icon name="md-list-box" item-left></ion-icon>
+            Registrarme
+        </button>
+        <button menuClose ion-item (click)="entrada(1)">
+            <ion-icon name="md-log-in" item-left></ion-icon>
+            Iniciar Sesión
+        </button>
+      </div>
+
     </ion-list>
   </ion-content>
 

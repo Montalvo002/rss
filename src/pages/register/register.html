@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Registro de usuario</ion-title>
+    </ion-navbar>
+</ion-header>
+      
+<ion-content style="background:#f2f2f2;">
+    <ion-card *ngIf="!registrando">
+        <ion-card-header>
+            <b>Registro</b>
+        </ion-card-header>
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Nombre</ion-label>
+                <ion-input type="text" [(ngModel)]="form.nombre"></ion-input>
+            </ion-item>
+        
+            <ion-item>
+                <ion-label floating>E-mail</ion-label>
+                <ion-input type="email" [(ngModel)]="form.email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Contraseña</ion-label>
+                <ion-input type="password" [(ngModel)]="form.contrasena"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Confirmar contraseña</ion-label>
+                <ion-input type="password" [(ngModel)]="form.ccontrasena"></ion-input>
+            </ion-item>
+        
+        </ion-list>
+        <div padding>
+            <button ion-button block (click)="registrar()">Registrarme</button>
+        </div>
+    </ion-card>
+
+    <ion-card *ngIf="registrando">
+        <ion-card-header>
+            Realizando registro <ion-spinner name="crescent"></ion-spinner>
+        </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+        <div padding style="text-align:center;color:rgb(136, 136, 136);">
+            Ya estás registrado?
+            <button ion-button block (click)="irLogin()">Ingresar</button>
+        </div>
+    </ion-card>
+
+
+</ion-content>

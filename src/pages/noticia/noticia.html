@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>{{noticia.title}}</ion-title>
+    </ion-navbar>
+    </ion-header>
+    
+    <ion-content style="background:#f2f2f2;">
+    
+    <ion-card>
+        <img src="{{noticia.image}}">
+    
+        <ion-card-content>
+        <b style="font-size:18px;">{{noticia.title}}</b>
+        <!-- <p>{{noticia.description}}</p> -->
+        </ion-card-content>
+    
+        <ion-item padding-left color="primary">
+            <ion-icon name='md-thumbs-up'></ion-icon> {{noticia.likes.length}}
+            <ion-icon name='md-cloud-outline'></ion-icon> {{noticia.comentary.length}}
+        </ion-item>
+    
+        <!-- Botones -->
+        <ion-row no-padding>
+            <ion-col>
+                <a href="{{noticia.link}}" target="_blank">
+                <button ion-button clear small color="default" icon-start>
+                <ion-icon name='eye'></ion-icon>
+                ver
+                </button>
+                </a>
+            </ion-col>
+            <ion-col text-right>
+                <button ion-button clear small color="default" icon-start *ngIf="!noticia.like" (click)="like(noticia)">
+                <ion-icon name='md-thumbs-up'></ion-icon>
+                Me gusta
+                </button>
+                <button ion-button clear small color="success" icon-start *ngIf="noticia.like" (click)="dislike(noticia)">
+                <ion-icon name='md-thumbs-up'></ion-icon>
+                Me gusta
+                </button>
+            </ion-col>
+            <ion-col text-right>
+                <button ion-button clear small color="default" icon-start>
+                <ion-icon name='md-cloud-outline'></ion-icon>
+                Comentar
+                </button>
+            </ion-col>
+        </ion-row>
+    
+    </ion-card>
+
+    <ion-card>
+        <ion-item>
+            <h2 style="font-weight: bold;">Comentar</h2>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>comentario...</ion-label>
+            <ion-input type="comentario" [(ngModel)]="form.comentario"></ion-input>
+        </ion-item>
+
+        <div padding>
+            <button ion-button block (click)="comentar()">Comentar</button>
+        </div>
+
+    </ion-card>
+
+    <ion-card>
+        <ion-item>
+            <h2 style="font-weight: bold;">Comentarios</h2>
+        </ion-item>
+        <ion-item *ngFor="let comentario of noticia.comentary">
+            <b>{{comentario.usuario}}</b>
+            <p>{{comentario.comentario}}</p>
+        </ion-item>
+    </ion-card>
+    
+    </ion-content>

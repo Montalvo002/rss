@@ -1,18 +1,60 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu" color="light"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Noticias</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content style="background:#f2f2f2;">
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-card *ngFor="let noticia of noticias">
+    <ion-item>
+      <h2 style="font-weight: bold;">BBC</h2>
+      <p>{{noticia.date.substring(0,10)}}</p>
+    </ion-item>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    <img src="{{noticia.image}}">
+
+    <ion-card-content>
+      <b style="font-size:18px;">{{noticia.title}}</b>
+      <p>{{noticia.description}}</p>
+    </ion-card-content>
+
+    <ion-item padding-left color="primary">
+        <ion-icon name='md-thumbs-up'></ion-icon> {{noticia.likes.length}}
+        <ion-icon name='md-cloud-outline'></ion-icon> {{noticia.comentary.length}}
+    </ion-item>
+
+    <!-- Botones -->
+    <ion-row no-padding>
+        <ion-col>
+            <a href="{{noticia.link}}" target="_blank">
+              <button ion-button clear small color="default" icon-start>
+              <ion-icon name='eye'></ion-icon>
+              ver
+              </button>
+            </a>
+        </ion-col>
+        <ion-col text-right>
+            <button ion-button clear small color="default" icon-start *ngIf="!noticia.like" (click)="like(noticia)">
+              <ion-icon name='md-thumbs-up'></ion-icon>
+              Me gusta
+            </button>
+            <button ion-button clear small color="success" icon-start *ngIf="noticia.like" (click)="dislike(noticia)">
+              <ion-icon name='md-thumbs-up'></ion-icon>
+              Me gusta
+            </button>
+        </ion-col>
+        <ion-col text-right>
+            <button ion-button clear small color="default" icon-start (click)="comentar(noticia)">
+              <ion-icon name='md-cloud-outline'></ion-icon>
+              Comentar
+            </button>
+        </ion-col>
+    </ion-row>
+
+  </ion-card>
+
 </ion-content>
